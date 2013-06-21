@@ -3,7 +3,7 @@
  * A simple video retrieval Snippet for MODX Revolution
  *
  * @author David Pede <dev@tasianmedia.com>
- * @version 1.0.0-beta
+ * @version 1.0.0-beta1
  * @since June 12, 2013
  * @package getvimeo
  */
