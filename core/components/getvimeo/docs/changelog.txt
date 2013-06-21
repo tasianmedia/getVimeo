@@ -1,0 +1,5 @@
+Changelog for getVimeo.
+
+getVimeo 1.0.0-beta1 (June 12, 2013)
+====================================
+- Initial release.
