@@ -1,4 +1,4 @@
-#getVimeo 1.0.0-beta1
+#getVimeo 1.0.0-pl
 ##A simple video retrieval Snippet for MODX Revolution.
 
 ###Installation

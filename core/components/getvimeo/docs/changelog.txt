@@ -1,5 +1,15 @@
 Changelog for getVimeo.
 
+getVimeo 1.0.0-pl (June 24, 2013)
+====================================
+- Add &sortby parameter.
+- Add &sortdir parameter.
+- Add MODX error logging support for &channel parameter.
+- Add MODX error logging support for &id parameter.
+- Add MODX error logging support for &tpl parameter.
+- Add correct contact details.
+- Add correct License.
+
 getVimeo 1.0.0-beta1 (June 12, 2013)
 ====================================
 - Initial release.
