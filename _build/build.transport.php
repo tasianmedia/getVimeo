@@ -14,7 +14,7 @@ set_time_limit(0);
 define('PKG_NAME','getVimeo');
 define('PKG_NAME_LOWER','getvimeo');
 define('PKG_VERSION','1.0.0');
-define('PKG_RELEASE','beta1');
+define('PKG_RELEASE','pl');
  
 /* define sources */
 $root = dirname(dirname(__FILE__)).'/';
