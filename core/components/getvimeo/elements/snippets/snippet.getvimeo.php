@@ -40,7 +40,7 @@ if (!empty($channel)) {
   $rowOutput = '';
 
   $videos = unserialize(file_get_contents("http://vimeo.com/api/v2/channel/$channel/videos.php"))
-  or exit($modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() @ Resource ' . $modx->resource->get('id') . ' - Unable to find Channel: ' . $channel));
+  or $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() @ Resource ' . $modx->resource->get('id') . ' - Unable to find Channel: ' . $channel);
 	
   if (!empty($sortby)) {
     foreach ($videos as $rows) {
@@ -60,7 +60,7 @@ if (!empty($channel)) {
         $rowTpl = $tpl;
       }
     }else{
-      exit($modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() @ Resource ' . $modx->resource->get('id') . ' - &tpl is required'));
+      $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() @ Resource ' . $modx->resource->get('id') . ' - &tpl is required');
     }
     if (in_array("all", $id)){ //If &id is 'all' then output all vids in channel
       $array = (array) $video; //Add each video as an array
@@ -87,6 +87,6 @@ if (!empty($channel)) {
     }
   }
 }else{
-  exit($modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() @ Resource ' . $modx->resource->get('id') . ' - &channel is required'));
+  $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() @ Resource ' . $modx->resource->get('id') . ' - &channel is required');
 }
 return $output;
