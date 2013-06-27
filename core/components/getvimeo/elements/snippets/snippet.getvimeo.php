@@ -77,6 +77,7 @@ if (!empty($channel)) {
     }
   }
   if(!empty($rowOutput)) {
+    $modx->setPlaceholder('total',$idx); //Set 'total' placeholder 
     if (!empty($toPlaceholder)) {
       $modx->setPlaceholder($toPlaceholder,$rowOutput); //Set '$toPlaceholder' placeholder 
       if (!empty($tplWrapper)) {
