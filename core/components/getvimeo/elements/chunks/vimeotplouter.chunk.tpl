@@ -1,4 +1,4 @@
 <div>
-	<span>Outer Tpl</span><br>
-	[[+vids]]
+  <span>Outer Tpl</span><br>
+  [[+vids]]
 </div>
