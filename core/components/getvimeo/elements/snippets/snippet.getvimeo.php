@@ -34,9 +34,10 @@ $sortdir = !empty($sortdir) && ($sortdir == "ASC") ? SORT_ASC : SORT_DESC; // If
 $toPlaceholder = !empty($toPlaceholder) ? $toPlaceholder : ''; // Blank default makes '&toPlaceholder' optional
 $i = 1; //Starts row count at 1
 
+$output = '';
+
 if (!empty($channel)) {
 
-  $output = '';
   $rowOutput = '';
 
   $videos = unserialize(file_get_contents("http://vimeo.com/api/v2/channel/$channel/videos.php"))
