@@ -1,10 +1,10 @@
 <?php
 /**
- * A simple video retrieval Snippet for MODX Revolution
+ * A simple video retrieval Snippet for MODX Revolution.
  *
  * @author David Pede <dev@tasianmedia.com>
- * @version 1.0.0-pl
- * @released June 24, 2013
+ * @version 1.0.1-pl
+ * @released July 01, 2013
  * @since June 12, 2013
  * @package getvimeo
  *
@@ -20,9 +20,6 @@
  *getVimeo; if not, write to the Free Software Foundation, Inc., 59 Temple
  *Place, Suite 330, Boston, MA 02111-1307 USA
  */
-
-//error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-error_reporting(E_ERROR);
 
 /* set default properties */
 $channel = !empty($channel) ? $channel : '';

@@ -7,21 +7,21 @@
 $properties = array(
   array(
     'name' => 'channel',
-    'desc' => 'Name or ID of the target Vimeo Channel. [REQUIRED PARAMETER]',
+    'desc' => 'The URL Name or Numeric ID of the target Vimeo Channel. [REQUIRED]',
     'type' => 'textfield',
     'options' => '',
     'value' => '',
   ),
   array(
     'name' => 'id',
-    'desc' => 'A comma-separated list of Video IDs to output from target Channel. Use `all` to output all Videos. [REQUIRED PARAMETER]',
+    'desc' => 'A comma-separated list of Numeric Video IDs to output from target Channel. Use `all` to output all Videos. [REQUIRED]',
     'type' => 'textfield',
     'options' => '',
     'value' => '',
   ),
   array(
     'name' => 'tpl',
-    'desc' => 'Name of a chunk serving as a template. [REQUIRED PARAMETER]',
+    'desc' => 'Name of a chunk serving as a template. [REQUIRED]',
     'type' => 'textfield',
     'options' => '',
     'value' => '',
@@ -42,14 +42,14 @@ $properties = array(
   ),
   array(
     'name' => 'sortby',
-    'desc' => 'A placeholder name to sort by. Defaults to `upload_date`. [NOTE: Please see placeholder docs for more details]',
+    'desc' => 'A placeholder name to sort by. [NOTE: Please see placeholder docs for more details]',
     'type' => 'textfield',
     'options' => '',
     'value' => 'upload_date',
   ),
   array(
     'name' => 'sortdir',
-    'desc' => 'Order which to sort by. Defaults to `DESC`.',
+    'desc' => 'Order which to sort by. [OPTIONS: DESC or ASC]',
     'type' => 'list',
     'options' => array(
       array('text' => 'ASC','value' => 'ASC'),

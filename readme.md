@@ -1,4 +1,4 @@
-#getVimeo 1.0.0-pl
+#getVimeo 1.0.1-pl
 ##A simple video retrieval Snippet for MODX Revolution.
 
 ###Installation
@@ -11,7 +11,7 @@ http://rtfm.modx.com/display/ADDON/getVimeo
 GitHub Repository:
 http://github.com/tasianmedia/getVimeo
 
-Bug Reports:
+Bugs & Feature Requests:
 http://github.com/tasianmedia/getVimeo/issues
 
 ###Details

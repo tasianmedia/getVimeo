@@ -1,8 +1,8 @@
 --------------------
 Extra: getVimeo
 --------------------
-Version: 1.0.0-pl
-Released: June 24, 2013
+Version: 1.0.1-pl
+Released: July 01, 2013
 Since: June 12, 2013
 Author: David Pede <dev@tasianmedia.com>
 
@@ -14,7 +14,7 @@ http://rtfm.modx.com/display/ADDON/getVimeo
 GitHub Repository:
 http://github.com/tasianmedia/getVimeo
 
-Bug Reports:
+Bugs & Feature Requests:
 http://github.com/tasianmedia/getVimeo/issues
 
 Please Note:
