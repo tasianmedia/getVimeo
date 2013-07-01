@@ -1,5 +1,13 @@
 Changelog for getVimeo.
 
+getVimeo 1.0.1-pl (July 01, 2013)
+====================================
+- Add [[+total]] placeholder.
+- Fix incorrect video count.
+- Fix define output variable in correct place.
+- Fix page rendering when there is an error.
+- Tidy up tabs and convert to spaces.
+
 getVimeo 1.0.0-pl (June 24, 2013)
 ====================================
 - Add &sortby parameter.
