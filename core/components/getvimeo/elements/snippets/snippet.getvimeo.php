@@ -2,9 +2,9 @@
 /**
  * A simple video retrieval Snippet for MODX Revolution.
  *
- * @author David Pede <dev@tasianmedia.com>
- * @version 1.0.1-pl
- * @released July 01, 2013
+ * @author David Pede <dev@tasianmedia.com> <https://twitter.com/davepede>
+ * @version 1.1.0-pl
+ * @released October 16, 2013
  * @since June 12, 2013
  * @package getvimeo
  *
@@ -23,69 +23,91 @@
 
 /* set default properties */
 $channel = !empty($channel) ? $channel : '';
-$id = !empty($id) ? explode(',', $id) : array(''); // Receives CSV list, converts to array. Hardcode default: array('default')
+$id = !empty($id) ? explode(',', $id) : ''; // Receives CSV list, converts to array. Hardcode default: array('default')
 $tpl = !empty($tpl) ? $tpl : '';
 $tplAlt = !empty($tplAlt) ? $tplAlt : '';
 $tplWrapper = !empty($tplWrapper) ? $tplWrapper : ''; // Blank default makes '&tplWrapper' optional
 $sortby = !empty($sortby) ? $sortby : 'upload_date';
 $sortdir = !empty($sortdir) && ($sortdir == "ASC") ? SORT_ASC : SORT_DESC; // If parameter is not empty AND equals 'ASC' assign 'SORT_ASC'
 $toPlaceholder = !empty($toPlaceholder) ? $toPlaceholder : ''; // Blank default makes '&toPlaceholder' optional
-$idx = 0; //Starts index at 0
+
+$limit = isset($limit) ? (integer) $limit : 0;
+$offset = isset($offset) ? (integer) $offset : 0;
+$totalVar = !empty($totalVar) ? $totalVar : 'total';
+$total = 0;
 
 $output = '';
 
 if (!empty($channel)) {
-
-  $rowOutput = '';
-
-  $videos = unserialize(file_get_contents("http://vimeo.com/api/v2/channel/$channel/videos.php"))
-  or $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() @ Resource ' . $modx->resource->get('id') . ' - Unable to find Channel: ' . $channel);
-	
-  if (!empty($sortby)) {
-    foreach ($videos as $rows) {
-      $array[] = $rows["$sortby"];
-    }
-    array_multisort($array, $sortdir, $videos);
-  }
-  foreach($videos as $video) {
+  $url = unserialize(file_get_contents("http://vimeo.com/api/v2/channel/$channel/videos.php"))
+  or $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() @ Unable to find Channel: ' . $channel);
+  if (!empty($id)) {
     if (!empty($tpl)) {
-      if (!empty($tplAlt)) {
-        if($idx % 2 == 0) { // Checks if index can be divided by 2 (alt)
-          $rowTpl = $tpl;
-        }else{
-          $rowTpl = $tplAlt;
+      /* ADD REQUESTED VIDEOS TO ARRAY */
+      if (in_array("all", $id)) { //If &id is 'all' then output all videos in channel
+        foreach($url as $data) {
+          $videos[] = $data;
         }
       }else{
-        $rowTpl = $tpl;
+        foreach($url as $data) {
+          if (in_array($data['id'], $id)) {
+            $videos[] = $data;
+          }
+        }
+      }
+      if (isset($videos)) {
+        /* SORT THE ARRAY */
+        if (!empty($sortby)) {
+          foreach ($videos as $rows) {
+            $array[] = $rows["$sortby"];
+          }
+          array_multisort($array, $sortdir, $videos);
+        }
+        /* SETUP GETPAGE */
+        $total = count($videos);
+        $modx->setPlaceholder($totalVar, $total);
+        $itemIdx = 0;
+        $idx = 0;
+        /* PROCESS THE ARRAY READY FOR MODX */
+        foreach($videos as $video) {
+          if ($idx >= $offset) {
+            if (!empty($tplAlt)) {
+              if($idx % 2 == 0) { // Checks if index can be divided by 2 (alt)
+                $rowTpl = $tpl;
+              }else{
+                $rowTpl = $tplAlt;
+              }
+            }else{
+              $rowTpl = $tpl;
+            }
+            $itemIdx++; //Increases item index by +1
+            $modx->setPlaceholder('idx',$idx+1);
+            $results[] = $modx->getChunk($rowTpl,$video);
+            if ($limit > 0 && $itemIdx+1 > $limit) break;
+          }
+          $idx++;
+        }
+        if(!empty($results)) {
+          $results = implode("\n", $results);
+          if (!empty($tplWrapper) || !empty($toPlaceholder)) {
+            if (!empty($toPlaceholder)) {
+              $output = $modx->setPlaceholder($toPlaceholder,$results); //Set '$toPlaceholder' placeholder
+            }
+            if (!empty($tplWrapper)) {
+              $output = $modx->getChunk($tplWrapper, array('output' => $results)); //Convert to array and pass to the '$tplWrapper' chunk
+            }
+          }else{
+            $output = $results;
+          }
+        }
+      }else{
+        $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() - &id not found in Channel: ' . $channel);
       }
     }else{
-      $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() @ Resource ' . $modx->resource->get('id') . ' - &tpl is required');
-    }
-    if (in_array("all", $id)){ //If &id is 'all' then output all videos in channel
-      $array = (array) $video; //Add each video as an array
-      $rowOutput .= $modx->getChunk($rowTpl,$array);
-      $idx++; //Increases index by +1
-    }else{
-      if(in_array($video['id'], $id)){
-        $array = (array) $video; //Add each video as an array
-        $rowOutput .= $modx->getChunk($rowTpl,$array);
-        $idx++; //Increases index by +1
-      }
-    }
-  }
-  if(!empty($rowOutput)) {
-    $modx->setPlaceholder('total',$idx); //Set 'total' placeholder 
-    if (!empty($toPlaceholder)) {
-      $modx->setPlaceholder($toPlaceholder,$rowOutput); //Set '$toPlaceholder' placeholder 
-      if (!empty($tplWrapper)) {
-        $results = array('$toPlaceholder' => $rowOutput); //Convert '$rowOutput' to an array (getChunk needs array). Use '$toPlaceholder' as Key
-        $output = $modx->getChunk($tplWrapper,$results); //Pass array to the '$tplWrapper' chunk
-      }
-    }else{
-      $output = $rowOutput;
+      $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() - &tpl is required');
     }
   }
 }else{
-  $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() @ Resource ' . $modx->resource->get('id') . ' - &channel is required');
+  $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() - &channel is required');
 }
 return $output;

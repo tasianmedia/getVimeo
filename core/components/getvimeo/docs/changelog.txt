@@ -1,5 +1,15 @@
 Changelog for getVimeo.
 
+getVimeo 1.1.0-pl (October 16, 2013)
+====================================
+- Add getPage compatibility to allow output pagination.
+- Add [[+idx]] placeholder.
+- Add &limit parameter.
+- Add &offset parameter.
+- Add &totalVar parameter.
+- Fix MODX error logging support for &id parameter.
+- Fix MODX error logging support for &tpl parameter.
+
 getVimeo 1.0.1-pl (July 01, 2013)
 ====================================
 - Add [[+total]] placeholder.

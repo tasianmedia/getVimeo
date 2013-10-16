@@ -1,4 +1,4 @@
 <div>
   <span>Outer Tpl</span><br>
-  [[+vids]]
+  [[+output]]
 </div>

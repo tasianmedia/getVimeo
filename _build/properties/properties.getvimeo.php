@@ -64,5 +64,26 @@ $properties = array(
     'options' => '',
     'value' => '',
   ),
+  array(
+    'name' => 'limit',
+    'desc' => 'Limits the number of Videos returned. Use `0` for unlimited results.',
+    'type' => 'textfield',
+    'options' => '',
+    'value' => '0',
+  ),
+  array(
+    'name' => 'offset',
+    'desc' => 'An offset of Videos to skip.',
+    'type' => 'textfield',
+    'options' => '',
+    'value' => '0',
+  ),
+  array(
+    'name' => 'totalVar',
+    'desc' => 'Define the key of a placeholder set by getVimeo indicating the total number of Videos that would be returned, NOT considering the LIMIT value.',
+    'type' => 'textfield',
+    'options' => '',
+    'value' => 'total',
+  ),
 );
 return $properties;
