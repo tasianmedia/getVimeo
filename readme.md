@@ -5,17 +5,15 @@
 Simply download through MODX Package Management, and install.
 
 ###Documentation
-Official Documentation:
-http://rtfm.modx.com/display/ADDON/getVimeo
+Official Documentation: http://rtfm.modx.com/display/ADDON/getVimeo
 
-GitHub Repository:
-http://github.com/tasianmedia/getVimeo
+GitHub Repository: http://github.com/tasianmedia/getVimeo
 
-Bugs & Feature Requests:
-http://github.com/tasianmedia/getVimeo/issues
+Bugs & Feature Requests: http://github.com/tasianmedia/getVimeo/issues
 
 ###Details
 Author: David Pede (dev@tasianmedia.com) (https://twitter.com/davepede)
+
 Copyright: (C) 2013 David Pede. All rights reserved. (dev@tasianmedia.com)
 
 ###Please Note
