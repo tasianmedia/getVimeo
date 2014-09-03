@@ -41,8 +41,20 @@ $total = 0;
 $output = '';
 
 if (!empty($channel)) {
-  $url = unserialize(file_get_contents("http://vimeo.com/api/v2/channel/$channel/videos.php"))
-  or $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() - Unable to find Channel: ' . $channel);
+
+  $url = array();
+  $page = 1;
+
+  do {
+     $pagedata = unserialize(file_get_contents("http://vimeo.com/api/v2/channel/$channel/videos.php?page=$page"))
+     or $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() - Unable to find Channel: ' . $channel);
+
+     $url = array_merge($url,$pagedata);
+     $page++;
+
+  } while ($pagedata != null && $page < 4);
+
+
   if (!empty($id)) {
     if (!empty($tpl)) {
       /* ADD REQUESTED VIDEOS TO ARRAY */
