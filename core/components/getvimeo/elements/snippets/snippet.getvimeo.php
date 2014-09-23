@@ -29,13 +29,13 @@ $id = !empty($id) ? explode(',', $id) : ''; // Receives CSV list, converts to ar
 $tpl = !empty($tpl) ? $tpl : '';
 $tplAlt = !empty($tplAlt) ? $tplAlt : '';
 $tplWrapper = !empty($tplWrapper) ? $tplWrapper : ''; // Blank default makes '&tplWrapper' optional
-$sortby = !empty($sortby) ? $sortby : 'upload_date';
+$sortby = !empty($sortby) ? $sortby : '';
 $sortdir = !empty($sortdir) && ($sortdir == "ASC") ? SORT_ASC : SORT_DESC; // If parameter is not empty AND equals 'ASC' assign 'SORT_ASC'
 $toPlaceholder = !empty($toPlaceholder) ? $toPlaceholder : ''; // Blank default makes '&toPlaceholder' optional
 
 $limit = isset($limit) ? (integer) $limit : 0;
 $offset = isset($offset) ? (integer) $offset : 0;
-$totalVar = !empty($totalVar) ? $totalVar : 'total';
+$totalVar = !empty($totalVar) ? $totalVar : '';
 $total = 0;
 
 $output = '';
