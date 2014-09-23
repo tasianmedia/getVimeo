@@ -3,12 +3,12 @@
  * A simple video retrieval Snippet for MODX Revolution.
  *
  * @author David Pede <dev@tasianmedia.com> <https://twitter.com/davepede>
- * @version 1.1.0-pl
- * @released October 16, 2013
+ * @version 1.1.1-pl
+ * @released September 23, 2014
  * @since June 12, 2013
  * @package getvimeo
  *
- * Copyright (C) 2013 David Pede. All rights reserved. <dev@tasianmedia.com>
+ * Copyright (C) 2014 David Pede. All rights reserved. <dev@tasianmedia.com>
  *
  * getVimeo is free software; you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software

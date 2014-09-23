@@ -2,7 +2,7 @@
 /**
  * @package getvimeo
  *
- * Copyright (C) 2013 David Pede. All rights reserved. <dev@tasianmedia.com>
+ * Copyright (C) 2014 David Pede. All rights reserved. <dev@tasianmedia.com>
  *
  * getVimeo is free software; you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
@@ -29,7 +29,7 @@ set_time_limit(0);
 /* define package names */
 define('PKG_NAME','getVimeo');
 define('PKG_NAME_LOWER','getvimeo');
-define('PKG_VERSION','1.1.0');
+define('PKG_VERSION','1.1.1');
 define('PKG_RELEASE','pl');
 
 /* define sources */
