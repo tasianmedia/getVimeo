@@ -1,4 +1,4 @@
-#getVimeo 1.1.0-pl
+#getVimeo 1.1.1-pl
 ###A simple video retrieval Snippet for MODX Revolution.
 
 ####Installation
@@ -14,7 +14,7 @@ If you have a bug fix or improvement and would like to submit a Pull Request, pl
 ####Details
 Author: David Pede (dev@tasianmedia.com) (https://twitter.com/davepede)
 
-Copyright: (C) 2013 David Pede. All rights reserved. (dev@tasianmedia.com)
+Copyright: (C) 2014 David Pede. All rights reserved. (dev@tasianmedia.com)
 
 ####Please Note
 getVimeo is not associated with or endorsed by Vimeo, LLC.

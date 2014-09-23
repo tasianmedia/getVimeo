@@ -3,12 +3,12 @@
  * A simple video retrieval Snippet for MODX Revolution.
  *
  * @author David Pede <dev@tasianmedia.com> <https://twitter.com/davepede>
- * @version 1.1.0-pl
- * @released October 16, 2013
+ * @version 1.1.1-pl
+ * @released September 23, 2014
  * @since June 12, 2013
  * @package getvimeo
  *
- * Copyright (C) 2013 David Pede. All rights reserved. <dev@tasianmedia.com>
+ * Copyright (C) 2014 David Pede. All rights reserved. <dev@tasianmedia.com>
  *
  * getVimeo is free software; you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
@@ -29,20 +29,29 @@ $id = !empty($id) ? explode(',', $id) : ''; // Receives CSV list, converts to ar
 $tpl = !empty($tpl) ? $tpl : '';
 $tplAlt = !empty($tplAlt) ? $tplAlt : '';
 $tplWrapper = !empty($tplWrapper) ? $tplWrapper : ''; // Blank default makes '&tplWrapper' optional
-$sortby = !empty($sortby) ? $sortby : 'upload_date';
+$sortby = !empty($sortby) ? $sortby : '';
 $sortdir = !empty($sortdir) && ($sortdir == "ASC") ? SORT_ASC : SORT_DESC; // If parameter is not empty AND equals 'ASC' assign 'SORT_ASC'
 $toPlaceholder = !empty($toPlaceholder) ? $toPlaceholder : ''; // Blank default makes '&toPlaceholder' optional
 
 $limit = isset($limit) ? (integer) $limit : 0;
 $offset = isset($offset) ? (integer) $offset : 0;
-$totalVar = !empty($totalVar) ? $totalVar : 'total';
+$totalVar = !empty($totalVar) ? $totalVar : '';
 $total = 0;
 
 $output = '';
 
 if (!empty($channel)) {
-  $url = unserialize(file_get_contents("http://vimeo.com/api/v2/channel/$channel/videos.php"))
-  or $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() - Unable to find Channel: ' . $channel);
+
+  $url = array();
+  $page = 1;
+
+  do {
+     $pagedata = unserialize(file_get_contents("http://vimeo.com/api/v2/channel/$channel/videos.php?page=$page"))
+     or $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() - Unable to find Channel: ' . $channel);
+     $url = array_merge($url,$pagedata);
+     $page++;
+  } while ((count($pagedata)) == 20 && $page <= 3);
+
   if (!empty($id)) {
     if (!empty($tpl)) {
       /* ADD REQUESTED VIDEOS TO ARRAY */
