@@ -39,6 +39,25 @@ $totalVar = !empty($totalVar) ? $totalVar : '';
 $total = 0;
 
 $output = '';
+global $file_get_contents_curl;
+ 
+if (!isset ($file_get_contents_curl)) {
+function file_get_contents_curl($url) {
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+ 
+    $data = curl_exec($ch);
+    curl_close($ch);
+
+    return $data;
+}
+$file_get_contents_curl = true;
+}
 
 if (!empty($channel)) {
 
@@ -46,7 +65,7 @@ if (!empty($channel)) {
   $page = 1;
 
   do {
-     $pagedata = unserialize(file_get_contents("http://vimeo.com/api/v2/channel/$channel/videos.php?page=$page"))
+     $pagedata = unserialize(file_get_contents_curl("http://vimeo.com/api/v2/channel/$channel/videos.php?page=$page"))
      or $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() - Unable to find Channel: ' . $channel);
      $url = array_merge($url,$pagedata);
      $page++;
