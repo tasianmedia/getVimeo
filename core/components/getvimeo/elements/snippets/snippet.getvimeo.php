@@ -23,6 +23,9 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
+$getvimeo = $modx->getService('getvimeo','getVimeo',$modx->getOption('getvimeo.core_path',null,$modx->getOption('core_path').'components/getvimeo/').'model/getvimeo/',$scriptProperties);
+if (!($getvimeo instanceof getVimeo)) return $modx->log(MODX::LOG_LEVEL_ERROR, 'getVimeo service class not loaded');
+
 /* set default properties */
 $channel = !empty($channel) ? $channel : '';
 $id = !empty($id) ? explode(',', $id) : ''; // Receives CSV list, converts to array. Hardcode default: array('default')
@@ -46,10 +49,9 @@ if (!empty($channel)) {
   $page = 1;
 
   do {
-     $pagedata = unserialize(file_get_contents("http://vimeo.com/api/v2/channel/$channel/videos.php?page=$page"))
-     or $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() - Unable to find Channel: ' . $channel);
-     $url = array_merge($url,$pagedata);
-     $page++;
+    $pagedata = unserialize($getvimeo->file_get_contents_curl("http://vimeo.com/api/v2/channel/$channel/videos.php?page=$page")) or $modx->log(modX::LOG_LEVEL_ERROR, 'getVimeo() - Unable to find Channel: ' . $channel);
+    $url = array_merge($url,$pagedata);
+    $page++;
   } while ((count($pagedata)) == 20 && $page <= 3);
 
   if (!empty($id)) {
