@@ -1,5 +1,11 @@
 Changelog for getVimeo.
 
+getVimeo 1.2.0-pl (November 15, 2017)
+====================================
+- Replace 'file_get_contents()' function with CURL.
+- Add service class.
+- Add GPM install/build support.
+
 getVimeo 1.1.1-pl (September 23, 2014)
 ====================================
 - Add API pagination support to increase video limit from 20 to 60.

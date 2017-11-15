@@ -1,4 +1,4 @@
-# getVimeo 1.1.1-pl
+# getVimeo 1.2.0-pl
 ### A simple video retrieval Snippet for MODX Revolution.
 
 #### Installation

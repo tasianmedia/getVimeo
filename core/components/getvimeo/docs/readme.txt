@@ -1,11 +1,11 @@
 --------------------
 Extra: getVimeo
 --------------------
-Version: 1.1.1-pl
-Released: September 23, 2014
+Version: 1.2.0-pl
+Released: November 15, 2017
 Since: June 12, 2013
 Author: David Pede <dev@tasianmedia.com> <https://twitter.com/davepede>
-Copyright: (C) 2014 David Pede. All rights reserved. <dev@tasianmedia.com>
+Copyright: (C) 2017 David Pede. All rights reserved. <dev@tasianmedia.com>
 
 A simple video retrieval Snippet for MODX Revolution.
 
