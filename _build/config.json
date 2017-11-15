@@ -1,0 +1,107 @@
+{
+  "name": "getVimeo"
+  ,"lowCaseName": "getvimeo"
+  ,"description": "A simple video retrieval Snippet for MODX Revolution"
+  ,"author": "David Pede <dev@tasianmedia.com> <https://twitter.com/davepede>"
+  ,"version": "1.1.1-pl"
+  ,"package":{
+    "actions": [{
+      "id": 1
+      ,"controller": "index"
+    }]
+    ,"elements": {
+      "snippets": [{
+        "name": "getVimeo"
+        ,"description": "A video retrieval Snippet for MODX Revolution. This snippet uses the Vimeo Simple API to search a specified channel and return requested videos and associated data."
+        ,"file": "snippet.getvimeo.php"
+        ,"properties": [{
+          "name": "channel"
+          ,"description": "The URL Name or Numeric ID of the target Vimeo Channel. [REQUIRED]"
+          ,"type": "textfield"
+          ,"value": ""
+        },{
+          "name": "id"
+          ,"description": "A comma-separated list of Numeric Video IDs to output from target Channel. Use `all` to output all Videos. [REQUIRED]"
+          ,"type": "textfield"
+          ,"value": ""
+        },{
+          "name": "tpl"
+          ,"description": "Name of a chunk serving as a template. [REQUIRED]"
+          ,"type": "textfield"
+          ,"value": "vimeoTpl"
+        },{
+          "name": "tplAlt"
+          ,"description": "Name of a chunk serving as a template for every other Video."
+          ,"type": "textfield"
+          ,"value": ""
+        },{
+          "name": "tplWrapper"
+          ,"description": "Name of a chunk serving as a wrapper template for the output. [NOTE: Only works when placeholder is set with &toPlaceholder]"
+          ,"type": "textfield"
+          ,"value": ""
+        },{
+          "name": "sortby"
+          ,"description": "A placeholder name to sort by. [NOTE: Please see placeholder docs for more details]"
+          ,"type": "textfield"
+          ,"value": "upload_date"
+        },{
+          "name": "sortdir"
+          ,"description": "Order which to sort by. [OPTIONS: DESC or ASC]"
+          ,"type": "list"
+          ,"options": [{
+            "text": "ASC",
+            "value": "ASC"
+          },{
+            "text": "DESC",
+            "value": "DESC"
+          }]
+          ,"value": "DESC"
+        },{
+          "name": "toPlaceholder"
+          ,"description": "If set, will assign the output to this placeholder instead of outputting it directly."
+          ,"type": "textfield"
+          ,"value": ""
+        },{
+          "name": "limit"
+          ,"description": "Limits the number of Videos returned. Use `0` for unlimited results."
+          ,"type": "textfield"
+          ,"value": "0"
+        },{
+          "name": "offset"
+          ,"description": "An offset of Videos to skip."
+          ,"type": "textfield"
+          ,"value": "0"
+        },{
+          "name": "totalVar"
+          ,"description": "Define the key of a placeholder set by getVimeo indicating the total number of Videos that would be returned, NOT considering the LIMIT value."
+          ,"type": "textfield"
+          ,"value": "total"
+        }]
+      }]
+      ,"chunks": [{
+        "name": "vimeoTpl"
+        ,"description": "Example chunk serving as a template."
+        ,"file": "vimeotpl.chunk.tpl"
+      },{
+        "name": "vimeoTplAlt"
+        ,"description": "Example chunk serving as a template for every other Video."
+        ,"file": "vimeotplalt.chunk.tpl"
+      },{
+        "name": "vimeoTplOuter"
+        ,"description": "Example chunk serving as a wrapper template for the output."
+        ,"file": "vimeotplouter.chunk.tpl"
+      }]
+    }
+    ,"systemSettings": [{
+      "key": "api_key"
+      ,"type": "textfield"
+      ,"namespace": "getvimeo"
+      ,"area": "api"
+    }]
+  }
+  ,"build": {
+    "readme": "docs/readme.txt"
+    ,"license": "docs/license.txt"
+    ,"changelog": "docs/changelog.txt"
+  }
+}

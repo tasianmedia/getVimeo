@@ -3,6 +3,7 @@
 
 #### Installation
 Simply download through MODX Package Management, and install.
+Also supports installation via 'Git Package Management' Extra: https://github.com/theboxer/Git-Package-Management
 
 #### Documentation
 - Official Documentation: http://rtfm.modx.com/extras/revo/getVimeo
